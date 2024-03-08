@@ -11,9 +11,9 @@
           <li>Creation Date: {{ task.creation_date }}</li>
           <li>Due Date: {{ task.due_date }}</li>
           <li>Completed: {% if task.completed %}Yes{% else %}No{% endif %}</li>
-          <li><a href="{% url 'task:edit' task.id %}">Modifier</a></li>
-          <li><a href="{% url 'task:delete' task.id %}">Supprimer</a></li>
         </ul>
+        <button><a href="{% url 'delete_task' task.pk %}">Supprimer</a></button>
+        <button><a href="{% url 'update_task' task.pk %}">Modifier</a></button>
       </li>
     {% endfor %}
   </ul>

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Task Details</h2>
+  <ul>
+    <li>Title: {{ task.title }}</li>
+    <li>Description: {{ task.description }}</li>
+    <li>Creation Date: {{ task.creation_date }}</li>
+    <li>Due Date: {{ task.due_date }}</li>
+    <li>Completed: {% if task.completed %}Yes{% else %}No{% endif %}</li>
+  </ul>
+{% endblock %}
