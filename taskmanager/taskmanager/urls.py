@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path
 
 from tasks.views import CreateTaskView, TaskDetailView, TaskUpdateView, TaskDeleteView, TaskListView
+from user.views import UserSignupView, UserLoginView, user_logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path("", TaskListView.as_view(), name="home"),
+    path('signup/', UserSignupView.as_view(), name='user_signup'),
+    path('', UserLoginView.as_view(), name='user_login'),
+    path('logout/', user_logout, name='user_logout'),
+
+    path("home/", TaskListView.as_view(), name="home"),
     path('task/create/', CreateTaskView.as_view(), name='create_task'),
     path('task/<int:pk>/', TaskDetailView.as_view(), name='task_detail'),
     path('task/<int:pk>/update/', TaskUpdateView.as_view(), name='update_task'),
