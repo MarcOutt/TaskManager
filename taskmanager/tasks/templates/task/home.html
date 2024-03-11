@@ -3,6 +3,18 @@
 {% block content %}
   <h2>Task List</h2>
   <ul>
+    {% if messages %}
+        <!-- Parcourir chaque message flash -->
+        {% for message in messages %}
+            <!-- Vérifier si le message est un message de succès -->
+            {% if message.tags == 'success' %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
     {% for task in tasks %}
       <li>
         {{ task.title }}
