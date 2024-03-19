@@ -38,17 +38,21 @@ class UserLoginView(View):
 
     def post(self, request):
         form = self.form_class(request.POST)
+
+        print(form.errors)
         if form.is_valid():
-            user = authenticate(username=form.cleaned_data['username'],
+            print(form.cleaned_data['email'])
+            print(form.cleaned_data['password'])
+            print('test')
+            print(form.errors)
+            user = authenticate(request, username=form.cleaned_data['email'],
                                 password=form.cleaned_data['password'],
                                 )
-            print(user)
             if user is not None:
                 login(request, user)
                 return redirect('home')
         message = 'Identifiants invalides.'
-        user = False
-        return render(request, self.template_name, context={'form': form, 'message': message, 'user': user})
+        return render(request, self.template_name, context={'form': form, 'message': message})
 
 
 def user_logout(request):

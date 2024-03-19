@@ -30,9 +30,8 @@ class CustomUser(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
 
-    USERNAME_FIELD = "username"
+    USERNAME_FIELD = "email"
     objects = MyUserManager()
-    follows = models.ManyToManyField('self', symmetrical=False, verbose_name='suit')
 
     def has_perm(self, perm, obj=None):
         return True
